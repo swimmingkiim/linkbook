@@ -9,7 +9,7 @@ import { AuthService } from "linkbookFirebase";
 
 const RoutePage: React.FC = () => {
   const [init, setInit] = useState(false);
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState<object | null>(null);
 
   const changeUser = (newUser: any): void => setUser(newUser);
 
@@ -29,7 +29,7 @@ const RoutePage: React.FC = () => {
           <Switch>
             <Route exact path="/">
               {init && !user && <Home changeUser={changeUser} />}
-              {init && user && <MyLinks />}
+              {init && user && <MyLinks user={user} />}
             </Route>
           </Switch>
           <Route path="*" component={Footer} />
