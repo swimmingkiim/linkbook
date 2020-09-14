@@ -1,12 +1,13 @@
 import styled from "styled-components";
 
-export const HeaderContainer = styled.header`
+export const FooterContainer = styled.footer`
   width: 100%;
   height: 20%;
   ${(props) => props.theme.centerByFlex}
+  flex-direction: column;
 `;
 
-export const HeaderTitle = styled.h1`
+export const Info = styled.h4`
   color: ${(props) => props.theme.color.themeColor};
-  background-color: ${(props) => props.theme.color.backgroundColor};
+  text-align: center;
 `;

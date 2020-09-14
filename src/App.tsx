@@ -1,6 +1,6 @@
 import React from "react";
 import GlobalStyle from "styles/globalStyle";
-import RoutePage from "RoutePage";
+import RoutePage from "pages/RoutePage";
 import { ThemeProvider } from "styled-components";
 import { theme } from "styles/theme";
 

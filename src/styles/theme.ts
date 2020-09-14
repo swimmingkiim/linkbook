@@ -4,6 +4,7 @@ export type Theme = {
     backgroundColor: string;
   };
   fontFamily: string;
+  centerByFlex: string;
 };
 
 export const theme: Theme = {
@@ -12,4 +13,6 @@ export const theme: Theme = {
     backgroundColor: "#f2e07d",
   },
   fontFamily: "font-family: 'Nanum Gothic', sans-serif",
+  centerByFlex:
+    "display: flex; flex-direction: row; justify-content: center; align-items: center;",
 };

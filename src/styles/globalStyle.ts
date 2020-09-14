@@ -13,9 +13,6 @@ const GlobalStyle = createGlobalStyle`
     width: 100%;
     height: 100%;
   }
-  #root {
-  background-color: #ffffff;
-  }
 `;
 
 export default GlobalStyle;
