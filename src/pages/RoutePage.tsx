@@ -6,6 +6,7 @@ import Home from "pages/Home/Home";
 import Footer from "components/Footer/Footer";
 import { OuterContainer, InnerContainer } from "./style";
 import { AuthService } from "linkbookFirebase";
+import AddForm from "./AddForm/AddForm";
 
 const RoutePage: React.FC = () => {
   const [init, setInit] = useState(false);
@@ -31,6 +32,7 @@ const RoutePage: React.FC = () => {
               {init && !user && <Home changeUser={changeUser} />}
               {init && user && <MyLinks user={user} />}
             </Route>
+            <Route path="/add-link">{user && <AddForm user={user} />}</Route>
           </Switch>
           <Route path="*" component={Footer} />
         </InnerContainer>

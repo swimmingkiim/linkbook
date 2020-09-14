@@ -10,3 +10,11 @@ export const EmailLoginForm = styled.form`
   display: flex;
   flex-direction: column;
 `;
+
+export const SocialLoginContainer = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+`;

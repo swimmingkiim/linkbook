@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import * as S from "./style";
 import TextInput from "components/TextInput/TextInput";
 import Button from "components/Button/Button";
-import { AuthService } from "linkbookFirebase";
+import firebase, { AuthService } from "linkbookFirebase";
 
 interface HomeProps {
   changeUser: (newUser: any) => void;
@@ -52,6 +52,29 @@ const Home: React.FC<HomeProps> = ({ changeUser }) => {
     else loginUser();
   };
 
+  const onGoogleLogin = async (
+    e: React.MouseEvent<HTMLButtonElement>
+  ): Promise<void> => {
+    try {
+      const provider = new firebase.auth.GoogleAuthProvider();
+      const { user } = await AuthService.signInWithPopup(provider);
+      changeUser(user);
+    } catch (error) {
+      console.log("Error in google login: ", error.toString());
+    }
+  };
+  const onGithubLogin = async (
+    e: React.MouseEvent<HTMLButtonElement>
+  ): Promise<void> => {
+    try {
+      const provider = new firebase.auth.GithubAuthProvider();
+      const { user } = await AuthService.signInWithPopup(provider);
+      changeUser(user);
+    } catch (error) {
+      console.log("Error in github login: ", error.toString());
+    }
+  };
+
   return (
     <S.HomeContainer>
       <S.EmailLoginForm onSubmit={onEmailLoginFormSubmit}>
@@ -81,6 +104,18 @@ const Home: React.FC<HomeProps> = ({ changeUser }) => {
           onClickFunc={changeIsCreateUser}
         />
       </S.EmailLoginForm>
+      <S.SocialLoginContainer>
+        <Button
+          type="button"
+          displayText="Login with Google"
+          onClickFunc={onGoogleLogin}
+        />
+        <Button
+          type="button"
+          displayText="Login with Github"
+          onClickFunc={onGithubLogin}
+        />
+      </S.SocialLoginContainer>
     </S.HomeContainer>
   );
 };
