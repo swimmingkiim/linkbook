@@ -1,8 +1,18 @@
 import React from "react";
-import * as S from "./sampleStyle";
+import GlobalStyle from "styles/globalStyle";
+import RoutePage from "RoutePage";
+import { ThemeProvider } from "styled-components";
+import { theme } from "styles/theme";
 
 const App: React.FC = () => {
-  return <S.SampleDiv>hello world! this is sample text</S.SampleDiv>;
+  return (
+    <React.Fragment>
+      <GlobalStyle />
+      <ThemeProvider theme={theme}>
+        <RoutePage />
+      </ThemeProvider>
+    </React.Fragment>
+  );
 };
 
 export default App;
