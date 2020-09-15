@@ -3,14 +3,18 @@ import * as S from "./style";
 
 interface ButtonProps {
   type: "button" | "submit" | "reset";
-  displayText: string;
+  displayContent: string | React.FC | React.ReactChild;
   onClickFunc?: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
-const Button: React.FC<ButtonProps> = ({ type, displayText, onClickFunc }) => {
+const Button: React.FC<ButtonProps> = ({
+  type,
+  displayContent,
+  onClickFunc,
+}) => {
   return (
     <S.Button type={type} onClick={onClickFunc}>
-      {displayText}
+      {displayContent}
     </S.Button>
   );
 };

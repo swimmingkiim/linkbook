@@ -9,6 +9,12 @@ export const EmailLoginForm = styled.form`
   width: 100%;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+
+  input + input {
+    margin-top: 5%;
+  }
 `;
 
 export const SocialLoginContainer = styled.div`

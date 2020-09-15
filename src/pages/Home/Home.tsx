@@ -96,23 +96,23 @@ const Home: React.FC<HomeProps> = ({ changeUser }) => {
         />
         <Button
           type="submit"
-          displayText={isCreateUser ? "Sign UP" : "Login"}
+          displayContent={isCreateUser ? "Sign UP" : "Login"}
         />
         <Button
           type="button"
-          displayText={isCreateUser ? "Change to Login" : "I'm a new user!"}
+          displayContent={isCreateUser ? "Change to Login" : "I'm a new user!"}
           onClickFunc={changeIsCreateUser}
         />
       </S.EmailLoginForm>
       <S.SocialLoginContainer>
         <Button
           type="button"
-          displayText="Login with Google"
+          displayContent="Login with Google"
           onClickFunc={onGoogleLogin}
         />
         <Button
           type="button"
-          displayText="Login with Github"
+          displayContent="Login with Github"
           onClickFunc={onGithubLogin}
         />
       </S.SocialLoginContainer>

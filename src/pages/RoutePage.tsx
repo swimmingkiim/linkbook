@@ -8,16 +8,28 @@ import { OuterContainer, InnerContainer } from "./style";
 import { AuthService } from "linkbookFirebase";
 import AddForm from "./AddForm/AddForm";
 
+interface User {
+  displayName: string;
+  photoURL: string;
+  uid: string;
+}
+
 const RoutePage: React.FC = () => {
   const [init, setInit] = useState(false);
-  const [user, setUser] = useState<object | null>(null);
+  const [user, setUser] = useState<User | null>(null);
 
   const changeUser = (newUser: any): void => setUser(newUser);
 
   useEffect(() => {
     AuthService.onAuthStateChanged((currentUser) => {
-      if (currentUser) changeUser(currentUser);
-      else changeUser(null);
+      if (currentUser) {
+        const { displayName, photoURL, uid } = currentUser;
+        changeUser({
+          displayName,
+          photoURL,
+          uid,
+        });
+      } else changeUser(null);
       setInit(true);
     });
   }, []);
