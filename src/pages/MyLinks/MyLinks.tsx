@@ -14,33 +14,42 @@ interface MyLinksProps {
 }
 
 interface LinkData {
+  id: string;
   title: string;
   link: string;
   tags: Array<string>;
+  createdAt: number;
 }
 
 const MyLinks: React.FC<MyLinksProps> = ({ user }) => {
   const [linkList, setLinkList] = useState<Array<LinkData>>([]);
+  const [orderByTime, setOrderByTime] = useState<"desc" | "asc">("desc");
   const history = useHistory();
 
-  const getAllLinksOfUser = useCallback(async (): Promise<void> => {
+  const getAllLinksOfUser = useCallback((): (() => void) => {
     try {
-      const userLinkList: Array<LinkData> = [];
-      const querySnapshot = await databaseService
+      const unsubscribe = databaseService
         .collection("links")
         .where("creator", "==", user.uid)
-        .get();
-      querySnapshot.forEach((doc) => {
-        const { title, link, tags } = doc.data();
-        userLinkList.push({
-          title,
-          link,
-          tags,
+        .orderBy("createdAt", "desc")
+        .onSnapshot((querySnapshot) => {
+          const userLinkList: Array<LinkData> = [];
+          querySnapshot.forEach((doc) => {
+            const { title, link, tags, createdAt } = doc.data();
+            userLinkList.push({
+              id: doc.id,
+              title,
+              link,
+              tags,
+              createdAt,
+            });
+          });
+          setLinkList(userLinkList);
         });
-      });
-      setLinkList(userLinkList);
+      return unsubscribe;
     } catch (error) {
       console.log("Error while fetching linkList : " + error.toString());
+      return () => null;
     }
   }, [user]);
 
@@ -49,8 +58,17 @@ const MyLinks: React.FC<MyLinksProps> = ({ user }) => {
     history.push("/");
   };
 
-  useEffect(() => {
-    getAllLinksOfUser();
+  const onChangeFilter = (): void =>
+    setOrderByTime((prev) => (prev === "asc" ? "desc" : "asc"));
+
+  const sortByTime = (a: LinkData, b: LinkData) =>
+    orderByTime === "asc"
+      ? a.createdAt - b.createdAt
+      : b.createdAt - a.createdAt;
+
+  useEffect((): (() => void) => {
+    const unsubscribe = getAllLinksOfUser();
+    return () => unsubscribe();
   }, [getAllLinksOfUser]);
 
   return (
@@ -60,9 +78,16 @@ const MyLinks: React.FC<MyLinksProps> = ({ user }) => {
         type="button"
         displayContent={<Link to="/add-link">Add Link</Link>}
       />
+      <Button
+        type="button"
+        displayContent={
+          orderByTime === "asc" ? "Filter By New" : "Filter By Old"
+        }
+        onClickFunc={onChangeFilter}
+      />
       <S.LinkListContainer>
-        {linkList.map(({ title, link, tags }) => (
-          <LinkItem key={title} title={title} link={link} tags={tags} />
+        {linkList.sort(sortByTime).map(({ id, title, link, tags }) => (
+          <LinkItem key={title} id={id} title={title} link={link} tags={tags} />
         ))}
       </S.LinkListContainer>
     </S.MyLinksContainer>

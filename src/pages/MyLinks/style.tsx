@@ -5,6 +5,7 @@ export const MyLinksContainer = styled.div`
   height: 100%;
   color: ${(props) => props.theme.color.themeColor};
   min-height: 360px;
+  position: relative;
 
   a {
     text-decoration: none;
@@ -16,4 +17,8 @@ export const LinkListContainer = styled.ul`
   list-style-type: none;
   display: block;
   width: 100%;
+
+  li + li {
+    margin-top: 5%;
+  }
 `;
