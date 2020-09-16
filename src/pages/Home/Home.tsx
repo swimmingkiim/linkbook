@@ -22,6 +22,35 @@ const Home: React.FC<HomeProps> = ({ changeUser }) => {
   };
 
   const changeIsCreateUser = () => setIsCreateUser((prev) => !prev);
+  const onLoginError = (error: string): void => {
+    if (error.includes("invalid"))
+      window.alert("Email or Password is not correct.");
+    else if (error.includes("no user"))
+      window.alert("There is no such user, maybe you should Sign up first :D");
+    else
+      window.alert("Something went wrong... please try again a while after.");
+  };
+  // --------- Google does this for me -------------------
+  // const emailPasswordValidation = (): string => {
+  //   let errorMessage = "";
+  //   if (loginEmail.length === 0)
+  //     errorMessage = "Ummm... You should enter your email first.";
+  //   else if (!loginEmail.includes("@"))
+  //     errorMessage =
+  //       "Are you sure that is your email address? Please check again.";
+  //   else if (!loginEmail.includes("."))
+  //     errorMessage =
+  //       "Are you sure that is your email address? Please check again.";
+  //   else if (
+  //     loginEmail.match(
+  //       new RegExp(/[a-zA-Z0-9\.]+(\@)[a-zA-Z0-9\.]+(\.)[a-z]+/)
+  //     ) !== null
+  //   )
+  //     errorMessage =
+  //       "Your email address is not a email form. Try another email.";
+  //   else errorMessage = "no problem";
+  //   return errorMessage === "no problem" ? "good" : errorMessage;
+  // };
   const createUser = async (): Promise<void> => {
     try {
       const { user } = await AuthService.createUserWithEmailAndPassword(
@@ -30,7 +59,7 @@ const Home: React.FC<HomeProps> = ({ changeUser }) => {
       );
       changeUser(user);
     } catch (error) {
-      console.log("Error while creating User : ", error.toString());
+      window.alert("Something went wrong...Please try again a while later.");
     }
   };
   const loginUser = async (): Promise<void> => {
@@ -41,7 +70,7 @@ const Home: React.FC<HomeProps> = ({ changeUser }) => {
       );
       changeUser(user);
     } catch (error) {
-      console.log("Error while Login : ", error.toString());
+      onLoginError(String(error));
     }
   };
   const onEmailLoginFormSubmit = (

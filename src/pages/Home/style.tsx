@@ -12,8 +12,8 @@ export const EmailLoginForm = styled.form`
   justify-content: space-between;
   align-items: center;
 
-  input + input {
-    margin-top: 5%;
+  input {
+    margin: 5% 0;
   }
 `;
 
