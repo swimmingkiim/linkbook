@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import * as S from "./style";
+import { useHistory } from "react-router-dom";
+import { databaseService } from "linkbookFirebase";
 import TextInput from "components/TextInput/TextInput";
 import Button from "components/Button/Button";
-import { databaseService } from "linkbookFirebase";
-import { useHistory } from "react-router-dom";
+import MaterialIcon from "components/MaterialIcon/MaterialIcon";
+import * as S from "./style";
 
 interface AddFormProps {
   user: {
@@ -87,7 +88,7 @@ const AddForm: React.FC<AddFormProps> = ({ user }) => {
         placeholder="Link URL"
         isRequired={true}
       />
-      <Button type="submit" displayContent="Save" />
+      <Button type="submit" displayContent={<MaterialIcon name="save_alt" />} />
     </S.FormContainer>
   );
 };

@@ -6,19 +6,35 @@ interface UpdateFormProps {
 
 export const LinkItemContainer = styled.li`
   width: 100%;
+  width: 100%;
   background-color: #ffffff;
-  padding: 2.5%;
+  padding: 5% 3%;
+  border-radius: 1.5rem;
+  position: relative;
 
   button {
     padding: 0.25%;
     margin: 2.5%;
-    float: right;
     display: none;
   }
   &:hover {
     button {
-      display: block;
+      display: inline-block;
     }
+  }
+`;
+
+export const ButtonContainer = styled.div`
+  width: 25%;
+  position: absolute;
+  top: 5%;
+  right: 1%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  i {
+    font-size: 100%;
   }
 `;
 
@@ -26,14 +42,17 @@ export const Title = styled.a`
   color: black;
   font-weight: 700;
   font-size: 150%;
+  display: block;
+  margin-bottom: 5%;
 `;
 
 export const TagsContainer = styled.div`
   width: 100%;
+  height: 100%;
   diplay: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
 
   label + label {
@@ -45,14 +64,11 @@ export const Tag = styled.label`
   color: ${(props) => props.theme.color.backgroundColor};
   background-color: ${(props) => props.theme.color.themeColor};
   font-size: 120%;
-`;
-
-export const Icon = styled.i`
-  width: 1em;
-  height: 1em;
-  &:hover {
-    cursor: pointer;
-  }
+  padding: 1% 2.5%;
+  border-radius: 0.25rem;
+  display: inline-block;
+  width: fit-content;
+  margin-bottom: 2.5%;
 `;
 
 export const UpdateForm = styled.form`
@@ -61,11 +77,20 @@ export const UpdateForm = styled.form`
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: fit-content;
   display: ${(props: UpdateFormProps) => props.show};
   background-color: ${(props) => props.theme.color.backgroundColor};
 
   button {
-    display: block;
+    display: inline-block;
+    float: right;
+  }
+
+  input + input {
+    margin-top: 5%;
+  }
+
+  i {
+    font-size: 250%;
   }
 `;

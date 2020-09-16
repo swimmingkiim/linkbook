@@ -3,8 +3,8 @@ import { useHistory, Link } from "react-router-dom";
 import { AuthService, databaseService } from "linkbookFirebase";
 import Button from "components/Button/Button";
 import LinkItem from "components/LinkItem/LinkItem";
+import MaterialIcon from "components/MaterialIcon/MaterialIcon";
 import * as S from "./style";
-
 interface MyLinksProps {
   user: {
     displayName: string;
@@ -73,23 +73,49 @@ const MyLinks: React.FC<MyLinksProps> = ({ user }) => {
 
   return (
     <S.MyLinksContainer>
-      <Button type="button" displayContent="Log out" onClickFunc={onLogOut} />
-      <Button
-        type="button"
-        displayContent={<Link to="/add-link">Add Link</Link>}
-      />
-      <Button
-        type="button"
-        displayContent={
-          orderByTime === "asc" ? "Filter By New" : "Filter By Old"
-        }
-        onClickFunc={onChangeFilter}
-      />
+      <S.ButtonContainer>
+        <Button
+          type="button"
+          displayContent={<MaterialIcon name="power_settings_new" />}
+          onClickFunc={onLogOut}
+        />
+        <Button
+          type="button"
+          displayContent={
+            <Link to="/add-link">
+              <MaterialIcon name="add_comment" />
+            </Link>
+          }
+        />
+        <Button
+          type="button"
+          displayContent={
+            orderByTime === "asc" ? (
+              <MaterialIcon name="call_made" />
+            ) : (
+              <MaterialIcon name="call_received" />
+            )
+          }
+          onClickFunc={onChangeFilter}
+        />
+      </S.ButtonContainer>
       <S.LinkListContainer>
-        {linkList.sort(sortByTime).map(({ id, title, link, tags }) => (
-          <LinkItem key={title} id={id} title={title} link={link} tags={tags} />
-        ))}
+        {linkList.length > 0 &&
+          linkList
+            .sort(sortByTime)
+            .map(({ id, title, link, tags }) => (
+              <LinkItem
+                key={title}
+                id={id}
+                title={title}
+                link={link}
+                tags={tags}
+              />
+            ))}
       </S.LinkListContainer>
+      {!Boolean(linkList.length) && (
+        <S.EmptyListText>Save A New Link :D</S.EmptyListText>
+      )}
     </S.MyLinksContainer>
   );
 };

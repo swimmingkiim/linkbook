@@ -3,6 +3,7 @@ import * as S from "./style";
 import { databaseService } from "linkbookFirebase";
 import TextInput from "components/TextInput/TextInput";
 import Button from "components/Button/Button";
+import MaterialIcon from "components/MaterialIcon/MaterialIcon";
 
 interface LinkItemProps {
   id: string;
@@ -72,18 +73,18 @@ const LinkItem: React.FC<LinkItemProps> = ({ id, title, link, tags }) => {
   };
   return (
     <S.LinkItemContainer>
-      <Button
-        type="button"
-        displayContent={
-          <S.Icon className="material-icons">delete_forever</S.Icon>
-        }
-        onClickFunc={onDeleteLinkItem}
-      />
-      <Button
-        type="button"
-        displayContent={<S.Icon className="material-icons">create</S.Icon>}
-        onClickFunc={onShowUpdate}
-      />
+      <S.ButtonContainer>
+        <Button
+          type="button"
+          displayContent={<MaterialIcon name="delete_forever" />}
+          onClickFunc={onDeleteLinkItem}
+        />
+        <Button
+          type="button"
+          displayContent={<MaterialIcon name="create" />}
+          onClickFunc={onShowUpdate}
+        />
+      </S.ButtonContainer>
       <S.Title href={link} target="_blank">
         {title}
       </S.Title>
@@ -119,7 +120,7 @@ const LinkItem: React.FC<LinkItemProps> = ({ id, title, link, tags }) => {
         />
         <Button
           type="submit"
-          displayContent={<S.Icon className="material-icons">save_alt</S.Icon>}
+          displayContent={<MaterialIcon name="save_alt" />}
         />
       </S.UpdateForm>
     </S.LinkItemContainer>

@@ -22,3 +22,26 @@ export const LinkListContainer = styled.ul`
     margin-top: 5%;
   }
 `;
+
+export const ButtonContainer = styled.div`
+  display: block;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-content: center;
+
+  button {
+    flex: 1;
+  }
+`;
+
+export const EmptyListText = styled.h3`
+  width: fit-content;
+  font-size: 150%;
+  color: ${(props) => props.theme.color.themeColor};
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+`;

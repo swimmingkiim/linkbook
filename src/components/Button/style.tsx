@@ -7,4 +7,14 @@ export const Button = styled.button`
   color: ${(props) => props.theme.color.themeColor};
   border: none;
   border-radius: 0.5rem;
+
+  &:focus {
+    outline: none;
+  }
+
+  & > a {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+  }
 `;

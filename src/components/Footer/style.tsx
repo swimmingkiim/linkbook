@@ -2,7 +2,8 @@ import styled from "styled-components";
 
 export const FooterContainer = styled.footer`
   width: 100%;
-  height: 20%;
+  height: 5rem;
+  margin-top: 2.5rem;
   ${(props) => props.theme.centerByFlex}
   flex-direction: column;
 `;
