@@ -35,7 +35,7 @@ const RoutePage: React.FC = () => {
   }, []);
 
   return (
-    <Router>
+    <Router basename="/linkbook/">
       <OuterContainer>
         <InnerContainer>
           <Route path="*" component={Header} />
