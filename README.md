@@ -3,6 +3,7 @@
 ![logo](https://1.bp.blogspot.com/-soFD5giFz9k/X2LWi1qcGzI/AAAAAAAAAIE/4FuCsFWKJwgtdnafIzDZYvYEXMenoHnKQCNcBGAsYHQ/s320/linkbook-logo.png)
 
 - Archive web links that you want to keep
+- [Try it yourself :D](https://swimmingkiim.github.io/linkbook/)
 
 ## User Experience
 
