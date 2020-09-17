@@ -4,7 +4,7 @@ import * as S from "./style";
 const Header: React.FC = () => {
   return (
     <S.HeaderContainer>
-      <S.Logo src={process.env.PUBLIC_URL + "/linkbook-logo.svg"} alt="logo" />
+      <S.Logo src={process.env.PUBLIC_URL + "/logo.svg"} alt="logo" />
     </S.HeaderContainer>
   );
 };

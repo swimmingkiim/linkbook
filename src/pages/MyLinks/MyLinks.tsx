@@ -4,6 +4,7 @@ import { AuthService, databaseService } from "linkbookFirebase";
 import Button from "components/Button/Button";
 import LinkItem from "components/LinkItem/LinkItem";
 import MaterialIcon from "components/MaterialIcon/MaterialIcon";
+import TextInput from "components/TextInput/TextInput";
 import * as S from "./style";
 interface MyLinksProps {
   user: {
@@ -24,6 +25,7 @@ interface LinkData {
 const MyLinks: React.FC<MyLinksProps> = ({ user }) => {
   const [linkList, setLinkList] = useState<Array<LinkData>>([]);
   const [orderByTime, setOrderByTime] = useState<"desc" | "asc">("desc");
+  const [searchString, setSearchString] = useState<string>("");
   const history = useHistory();
 
   const getAllLinksOfUser = useCallback((): (() => void) => {
@@ -66,6 +68,21 @@ const MyLinks: React.FC<MyLinksProps> = ({ user }) => {
       ? a.createdAt - b.createdAt
       : b.createdAt - a.createdAt;
 
+  const onSearchStringChange = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ): void => {
+    const {
+      target: { value },
+    } = e;
+    setSearchString(value);
+  };
+
+  const isTagsHaveKeyword = (tags: Array<string>): boolean => {
+    const lowerCaseTags = tags.map((tag) => tag.toLowerCase()).join(",");
+    if (lowerCaseTags.includes(searchString)) return true;
+    else return false;
+  };
+
   useEffect((): (() => void) => {
     const unsubscribe = getAllLinksOfUser();
     return () => unsubscribe();
@@ -99,11 +116,22 @@ const MyLinks: React.FC<MyLinksProps> = ({ user }) => {
           onClickFunc={onChangeFilter}
         />
       </S.ButtonContainer>
+      <S.SearchContainer>
+        <TextInput
+          type="text"
+          name="searchString"
+          value={searchString}
+          placeholder="A Tag name"
+          onChangeFunc={onSearchStringChange}
+          isRequired={false}
+        />
+      </S.SearchContainer>
       <S.LinkListContainer>
         {linkList.length > 0 &&
-          linkList
-            .sort(sortByTime)
-            .map(({ id, title, link, tags }) => (
+          linkList.sort(sortByTime).map(({ id, title, link, tags }) => {
+            if (searchString !== "" && isTagsHaveKeyword(tags) === false)
+              return null;
+            return (
               <LinkItem
                 key={title}
                 id={id}
@@ -111,7 +139,8 @@ const MyLinks: React.FC<MyLinksProps> = ({ user }) => {
                 link={link}
                 tags={tags}
               />
-            ))}
+            );
+          })}
       </S.LinkListContainer>
       {!Boolean(linkList.length) && (
         <S.EmptyListText>Save A New Link :D</S.EmptyListText>

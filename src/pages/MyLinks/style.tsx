@@ -36,6 +36,12 @@ export const ButtonContainer = styled.div`
   }
 `;
 
+export const SearchContainer = styled.div`
+  display: block;
+  width: 100%;
+  margin-bottom: 5%;
+`;
+
 export const EmptyListText = styled.h3`
   width: fit-content;
   font-size: 150%;

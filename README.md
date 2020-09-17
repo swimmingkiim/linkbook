@@ -12,7 +12,7 @@
 - User can create, read, update, delete links.
 - User can assign title and related tags(keywords) when creating or updating link items.
 - User can sort links by created(or updated)time by clicking arrow button.
-- `upcoming` User will be able to sort their links by tag keyword.
+- User can filter links by a tag keyword.
 
 ## Preview
 
