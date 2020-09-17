@@ -10,3 +10,7 @@ export const HeaderTitle = styled.h1`
   color: ${(props) => props.theme.color.themeColor};
   background-color: ${(props) => props.theme.color.backgroundColor};
 `;
+
+export const Logo = styled.img`
+  height: 100%;
+`;
