@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.js": "/linkbook/static/js/main.612a17b6.chunk.js",
-    "main.js.map": "/linkbook/static/js/main.612a17b6.chunk.js.map",
+    "main.js": "/linkbook/static/js/main.c793dfb5.chunk.js",
+    "main.js.map": "/linkbook/static/js/main.c793dfb5.chunk.js.map",
     "runtime-main.js": "/linkbook/static/js/runtime-main.551ce8f2.js",
     "runtime-main.js.map": "/linkbook/static/js/runtime-main.551ce8f2.js.map",
-    "static/js/2.509426c4.chunk.js": "/linkbook/static/js/2.509426c4.chunk.js",
-    "static/js/2.509426c4.chunk.js.map": "/linkbook/static/js/2.509426c4.chunk.js.map",
+    "static/js/2.a3533ce4.chunk.js": "/linkbook/static/js/2.a3533ce4.chunk.js",
+    "static/js/2.a3533ce4.chunk.js.map": "/linkbook/static/js/2.a3533ce4.chunk.js.map",
     "index.html": "/linkbook/index.html",
-    "precache-manifest.3929d686c1fce5190eac1dd3385dc286.js": "/linkbook/precache-manifest.3929d686c1fce5190eac1dd3385dc286.js",
+    "precache-manifest.033959f22bb9188a2831869940b8aeaa.js": "/linkbook/precache-manifest.033959f22bb9188a2831869940b8aeaa.js",
     "service-worker.js": "/linkbook/service-worker.js",
-    "static/js/2.509426c4.chunk.js.LICENSE.txt": "/linkbook/static/js/2.509426c4.chunk.js.LICENSE.txt"
+    "static/js/2.a3533ce4.chunk.js.LICENSE.txt": "/linkbook/static/js/2.a3533ce4.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.551ce8f2.js",
-    "static/js/2.509426c4.chunk.js",
-    "static/js/main.612a17b6.chunk.js"
+    "static/js/2.a3533ce4.chunk.js",
+    "static/js/main.c793dfb5.chunk.js"
   ]
 }
